@@ -1,17 +1,22 @@
 import { useEffect, useState } from "react";
-import type { Book } from './types/Book';
+import type { Book } from '../types/Book';
+import { useNavigate } from "react-router-dom";
 
-function BookList() {
+
+function BookList({ selectedCategories }: { selectedCategories: string[] }) {
     const [books, setBooks] = useState<Book[]>([]);
     const [pageSize, setPageSize] = useState<number>(5);
     const [pageNum, setPageNum] = useState<number>(1);
     const [totalItems, setTotalItems] = useState<number>(0);
     const [totalPages, setTotalPages] = useState<number>(0);
     const [sortOrder, setSortOrder] = useState<string>("asc");
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchBooks = async () => {
-            const response = await fetch(`https://localhost:5000/Book/AllBooks?pageSize=${pageSize}&pageNum=${pageNum}&sortBy=title&sortOrder=${sortOrder}`);
+            const categoryParams = selectedCategories.map((cat) => `categories=${encodeURIComponent(cat)}`).join('&');
+
+            const response = await fetch(`https://localhost:5000/Book/AllBooks?pageSize=${pageSize}&pageNum=${pageNum}&sortBy=title&sortOrder=${sortOrder}${selectedCategories.length ? `&${categoryParams}` : ''}`);
             const data = await response.json();
             setBooks(data.books);
             setTotalItems(data.totalNumBooks);
@@ -19,7 +24,7 @@ function BookList() {
         };
 
         fetchBooks();
-    }, [pageSize, pageNum, totalItems, sortOrder]);
+    }, [pageSize, pageNum, totalItems, sortOrder, selectedCategories]);
 
     return(
         <>
@@ -48,6 +53,8 @@ function BookList() {
                                     <li className="list-group-item"><strong>Pages:</strong> {b.pageCount}</li>
                                     <li className="list-group-item"><strong>Price:</strong> ${b.price}</li>
                                 </ul>
+
+                                <button className="btn btn-success" onClick={() => navigate(`/purchase/${b.title}/${b.bookID}/${b.price}`)}>Buy</button>
                             </div>
                         </div>
                     </div>
