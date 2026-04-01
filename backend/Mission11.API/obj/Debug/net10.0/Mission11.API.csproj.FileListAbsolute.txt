@@ -64,3 +64,4 @@ C:\Users\mdpwa\OneDrive\Documents\W26\IS413\Mission_11\backend\Mission11.API\obj
 C:\Users\mdpwa\OneDrive\Documents\W26\IS413\Mission_11\backend\Mission11.API\obj\Debug\net10.0\Mission11.API.pdb
 C:\Users\mdpwa\OneDrive\Documents\W26\IS413\Mission_11\backend\Mission11.API\obj\Debug\net10.0\Mission11.API.genruntimeconfig.cache
 C:\Users\mdpwa\OneDrive\Documents\W26\IS413\Mission_11\backend\Mission11.API\obj\Debug\net10.0\ref\Mission11.API.dll
+C:\Users\mdpwa\OneDrive\Documents\W26\IS413\Mission_11\backend\Mission11.API\bin\Debug\net10.0\Bookstore.sqlite

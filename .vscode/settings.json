@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/1850103a-39b4-4164-aeb5-60ca5a7f7588/resourceGroups/appsvc_windows_francecentral/providers/Microsoft.Web/sites/Mission13-Markus-Backend",
+    "appService.deploySubpath": "backend\\Mission11.API\\publish"
+}
