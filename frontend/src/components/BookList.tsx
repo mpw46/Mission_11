@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Book } from '../types/Book';
 import { useNavigate } from "react-router-dom";
+import Pagination from "./Pagination";
 
 
 function BookList({ selectedCategories }: { selectedCategories: string[] }) {
@@ -61,40 +62,16 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
                 )}
             </div>
 
-            <div className="d-flex justify-content-between align-items-center">
-                <nav>
-                    <ul className="pagination mb-0">
-                        <li className={`page-item ${pageNum === 1 ? 'disabled' : ''}`}>
-                            <button className="page-link" onClick={() => setPageNum(pageNum - 1)}>Previous</button>
-                        </li>
-                        {[...Array(totalPages)].map((_, i) =>
-                            <li className={`page-item ${pageNum === i + 1 ? 'active' : ''}`} key={i + 1}>
-                                <button className="page-link" onClick={() => setPageNum(i + 1)}>
-                                    {i + 1}
-                                </button>
-                            </li>
-                        )}
-                        <li className={`page-item ${pageNum === totalPages ? 'disabled' : ''}`}>
-                            <button className="page-link" onClick={() => setPageNum(pageNum + 1)}>Next</button>
-                        </li>
-                    </ul>
-                </nav>
-
-                <div className="d-flex align-items-center gap-2">
-                    <label htmlFor="pageSize" className="form-label mb-0">Results per page:</label>
-                    <select
-                        id="pageSize"
-                        className="form-select form-select-sm"
-                        style={{ width: 'auto' }}
-                        value={pageSize}
-                        onChange={(p) => { setPageSize(Number(p.target.value)); setPageNum(1); }}
-                    >
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="20">20</option>
-                    </select>
-                </div>
-            </div>
+            <Pagination
+                currentPage={pageNum}
+                totalPages={totalPages}
+                pageSize={pageSize}
+                onPageChange={setPageNum}
+                onPageSizeChange={(newSize) => {
+                    setPageSize(newSize);
+                    setPageNum(1);
+                }}
+            />
         </>
     )
 }
