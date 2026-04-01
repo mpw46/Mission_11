@@ -9,7 +9,7 @@ function CategoryFilter ({selectedCategories, setSelectedCategories}: {selectedC
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const response = await fetch('https://localhost:5000/Book/GetCategories');
+                const response = await fetch('https://mission13-markus-backend-bdc2ceathzeyebdv.francecentral-01.azurewebsites.net/Book/GetCategories');
                 const data = await response.json();
                 console.log('Fetched categories', data);
                 setCategories(data);
