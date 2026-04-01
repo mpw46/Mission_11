@@ -17,7 +17,7 @@ function BookList({ selectedCategories }: { selectedCategories: string[] }) {
         const fetchBooks = async () => {
             const categoryParams = selectedCategories.map((cat) => `categories=${encodeURIComponent(cat)}`).join('&');
 
-            const response = await fetch(`https://localhost:5000/Book/AllBooks?pageSize=${pageSize}&pageNum=${pageNum}&sortBy=title&sortOrder=${sortOrder}${selectedCategories.length ? `&${categoryParams}` : ''}`);
+            const response = await fetch(`https://mission13-markus-backend-bdc2ceathzeyebdv.francecentral-01.azurewebsites.net/Book/AllBooks?pageSize=${pageSize}&pageNum=${pageNum}&sortBy=title&sortOrder=${sortOrder}${selectedCategories.length ? `&${categoryParams}` : ''}`);
             const data = await response.json();
             setBooks(data.books);
             setTotalItems(data.totalNumBooks);
