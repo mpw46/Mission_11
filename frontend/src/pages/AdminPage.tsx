@@ -14,7 +14,7 @@ const AdminPage = () => {
     const [totalPages, setTotalPages] = useState<number>(0);
     const [showForm, setShowForm] = useState(false);
     const [editingBook, setEditingBook] = useState<Book | null>(null);
-    const [sortOrder, setSortOrder] = useState<string>("asc");
+    const [sortOrder, _setSortOrder] = useState<string>("asc");
 
     useEffect(() => {
         const loadBooks = async () => {
